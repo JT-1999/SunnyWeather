@@ -16,6 +16,7 @@ import kotlin.coroutines.suspendCoroutine
  * @version 1.0
  * @description $
  **/
+//网络数据源层 调用Retrofit构建器create来进行网络请求
 object SunnyWeatherNetwork {
     private val placeService = ServiceCreator.create(PlaceService::class.java)
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
@@ -24,6 +25,7 @@ object SunnyWeatherNetwork {
     suspendCoroutine函数必须在协程作用域或挂起函数中才能调用
     接受一个Lambda表达式，主要作用是将当前协程立即挂起，然后在一个普通的线程中执行Lambda表达式中的代码
     Lambda表达式参数会传入一个Continuation参数，调用resume或resumeWithException可以让协程恢复执行*/
+
     //返回值是服务器响应的数据
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

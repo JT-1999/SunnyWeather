@@ -15,6 +15,8 @@ import java.lang.RuntimeException
  * @version 1.0
  * @description $
  **/
+//仓库层：决定了调用本地数据还是网络数据
+//在本应用中 全部为网络数据
 object Repository {
     //指定线程参数类型Dispatchers.IO 为子线程
     fun searchPlaces(query: String) = liveData(Dispatchers.IO) {
